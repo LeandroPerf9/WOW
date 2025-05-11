@@ -2,14 +2,9 @@
     <div class="navbar">
       <i class='bx bx-menu'></i>
       <div class="img-logo">
-        <img src="logo1.PNG" height="65px"   alt="logo">
+        <img src="logo1.PNG" alt="logo">
       </div>
-      <!--<div class="logo"><a href="#">World On Wheels</a></div>-->
       <div class="nav-links">
-        <div class="sidebar-logo">
-          <span class="logo-name">World On Wheels</span>
-          <i class='bx bx-x' ></i>
-        </div>
         <ul class="links">
           <li><a href="index.php">HOME</a></li>
           <li>

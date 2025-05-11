@@ -17,13 +17,12 @@
 		}
 	}
 
-	function registo($utilizador, $nome, $password1){
+	function registo($utilizador, $password1){
 			$tipo = 2;
-			
 			// Verificar se o e-mail já está registado
 			$sqlVerificaEmail = "SELECT COUNT(*) FROM utilizadores WHERE nome = :nome";
 			$stmtVerificaEmail = $this->liga->prepare($sqlVerificaEmail);
-			$stmtVerificaEmail->bindParam(':nome', $email);
+			$stmtVerificaEmail->bindParam(':nome', $utilizador);
 			$stmtVerificaEmail->execute();
 			$emailExistente = $stmtVerificaEmail->fetchColumn();
 			
@@ -36,26 +35,26 @@
 			
 			$stmt = $this->liga->prepare($sql);
 			$stmt->bindParam(':nome',$utilizador);
-			$stmt->bindParam(':pass',$password1);
+			$stmt->bindParam(':pass',password_hash($password1, PASSWORD_DEFAULT));
 			$stmt->bindParam(':tipo',$tipo);
 			$stmt->execute();
 			
 			// Login automático após o registo
 			// Verificar as credenciais para login
-			$sqlLogin = "SELECT * FROM utilizadores WHERE email = :email";
+			$sqlLogin = "SELECT * FROM utilizadores WHERE nome = :nome";
 			$stmtLogin = $this->liga->prepare($sqlLogin);
-			$stmtLogin->bindParam(':email', $email);
+			$stmtLogin->bindParam(':nome', $utilizador);
 			$stmtLogin->execute();
 			
 			// Verificar se o utilizador foi encontrado
 			$utilizadorInfo = $stmtLogin->fetch(PDO::FETCH_ASSOC);
 				
-			if ($utilizadorInfo && password_verify($password1, $utilizadorInfo['senha'])) {
+			if ($utilizadorInfo && password_verify($password1, $utilizadorInfo['pass'])) {
 				// Iniciar sessão e armazenar informações do utilizador
 				session_start(); // Inicia a sessão
 				$_SESSION['login'] = true;
 				$_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso </p>  "; 
-				$_SESSION['nome']=$utilizadorInfo['login'];
+				$_SESSION['nome']=$utilizadorInfo['nome'];
 			
 				if($utilizadorInfo['tipoUtilizador']==1)
 				{
@@ -73,36 +72,38 @@
 		
 	}
 	
-	function login($email, $password1){
-		
-		$sql = "SELECT * FROM utilizadores WHERE nome = :nome AND pass = :pass";
-		
+	function login($user, $password1){
+
+		$sql = "SELECT * FROM utilizadores WHERE nome = :nome";
 		$stmt = $this->liga->prepare($sql);
-		$stmt->bindParam(':nome',$email);
-		$stmt->bindParam(':pass',$password1);
+		$stmt->bindParam(':nome',$user);
 		$stmt->execute();
+		// Verificar se o utilizador foi encontrado
+		$inf = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$inf = $stmt->fetchAll();
-
-		//verificar se houve login correto
-		$total = $stmt->rowCount();
-	
-		if($total > 0){
+		if (!$inf) {
+			echo "Utilizador não encontrado!";
+			return;
+		}
+		echo $password1.'<br>';
+		echo $inf['pass'].'<br>';	
+		var_dump(password_verify($password1, $inf['pass']));
+		
+		if ($inf && password_verify('teste', '$2y$10$Wdnm4CX1u9wkrxMZSad3xuzeK6lBTebcmBF3tUq7JR3/Z/kthsggm')){
+			echo 'teste';
 			session_start();
-			foreach($inf as $dados){
-				$_SESSION['login'] = true;
-				$_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso </p>  "; 
-				$_SESSION['nome']=$dados['login'];
+			$_SESSION['login'] = true;
+			$_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso </p>  "; 
+			$_SESSION['nome']=$inf['nome'];
 
-				if($dados['tipoUtilizador']==1)
-				{
-					$_SESSION['tipo']=1; // Utilizador tipo admin
-				} else {
-					$_SESSION['tipo']=2; // Utilizador tipo autenticado não administrador
-				}
-		
-				header("location: index.php");
+			if($inf['id_tipo']==1)
+			{
+				$_SESSION['tipo']=1; // Utilizador tipo admin
+			} else {
+				$_SESSION['tipo']=2; // Utilizador tipo autenticado não administrador
 			}
+	
+			header("location: index.php");
 		}
 	}
 	
