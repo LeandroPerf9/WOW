@@ -1,3 +1,6 @@
+<?php 
+ include('ligaDados.php'); 
+?>
 <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en">
@@ -25,8 +28,7 @@
 ?>
 
   <section class="textContainer">
-  <br>   
-  <?php include('ligaDados.php'); ?>
+  <br> 
 
   <br>   
 
