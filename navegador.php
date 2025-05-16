@@ -20,14 +20,14 @@
             </ul>
           </li>
           <li>
-            <a href="#">CARACTERÍSTICAS</a>
+            <a href="caracteristicas.php">CARACTERÍSTICAS</a>
             <i class='bx bxs-chevron-down js-arrow arrow '></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="#">AUTONOMIA </a></li>
+              <li><a href="autonomia.php">AUTONOMIA </a></li>
               <li><a href="#">PESO E PORTABILIDADE</a></li>
             </ul>
           </li>
-          <li><a href="#">FUNDAMENTO</a></li>
+          <li><a href="fundamento.php">FUNDAMENTO</a></li>
           <li><a href="contactos.php">CONTACTOS</a></li>
         </ul>
       </div>

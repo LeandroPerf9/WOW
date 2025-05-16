@@ -189,6 +189,7 @@ nav .navbar .links li:hover .js-sub-menu{
   max-width: 1250px;
   width: 100%;
   padding: 0px 50px;
+  padding-bottom: 70px; /* adicionado para dar espaço ao footer fixo */
 }
 .textContainer h1{
   font-size: 40px;
@@ -225,6 +226,9 @@ nav .navbar .links li:hover .js-sub-menu{
   background: #fff;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
+.features-list li {
+  list-style: none;
+}
 
 footer {
   position: fixed;
@@ -239,7 +243,9 @@ footer {
   color: #fff;
   text-align: center;
   line-height: 50px;
+  z-index: 98;
 }
+
 
 
 /* Resonsive media query */
