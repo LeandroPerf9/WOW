@@ -26,6 +26,9 @@
 			$stmtVerificaEmail->execute();
 			$emailExistente = $stmtVerificaEmail->fetchColumn();
 			
+
+			$hash = password_hash($password1, PASSWORD_DEFAULT);
+
 			if ($emailExistente > 0) {
 				echo "Este e-mail já está registado!";
 				return;
@@ -35,7 +38,7 @@
 			
 			$stmt = $this->liga->prepare($sql);
 			$stmt->bindParam(':nome',$utilizador);
-			$stmt->bindParam(':pass',password_hash($password1, PASSWORD_DEFAULT));
+			$stmt->bindParam(':pass', $hash);
 			$stmt->bindParam(':tipo',$tipo);
 			$stmt->execute();
 			
@@ -116,6 +119,29 @@
 		session_unset();
 		session_destroy();
 		header("location: index.php");
+	}
+
+
+	//listar as trotinetes
+	function listar_trotinetes($id){
+		$sql = "SELECT * FROM trotinetes, modelos WHERE trotinetes.id_marca = modelos.id_marca AND trotinetes.id_trotinete = :id";
+		$stmt = $this->liga->prepare($sql);
+		$stmt->bindParam(':id',$id);
+		$stmt->execute();
+		// Verificar se o utilizador foi encontrado
+		$inf = $stmt->fetchAll();
+		
+		foreach($inf as $dados){
+			echo'
+			<tr>
+				<td>'.$dados['marca'].'</td>
+				<td>'.$dados['modelo'].'</td>
+				<td>'.$dados['descricao'].'</td>
+				<td>'.$dados['preco'].'</td>
+				<td>'.$dados['imagem'].'</td>
+			</tr>
+			';
+		}
 	}
 }	
 	

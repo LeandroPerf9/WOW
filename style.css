@@ -15,7 +15,7 @@ nav{
   left: 0;
   width: 100%;
   height: 70px;
-  background: #113b87;
+  background: #1e319d;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   z-index: 99;
 }
@@ -59,7 +59,7 @@ nav .navbar .links li a{
   height: 100%;
   text-decoration: none;
   white-space: nowrap;
-  color: #fff;
+  color: #fef3bd;
   font-size: 15px;
   font-weight: 500;
 }
@@ -83,7 +83,7 @@ nav .navbar .links li .sub-menu{
   top: 70px;
   left: 0;
   line-height: 40px;
-  background: #2939e6;
+  background: #3749db;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 4px 4px;
   display: none;
@@ -98,7 +98,7 @@ nav .navbar .links li:hover .js-sub-menu{
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .navbar .links li .sub-menu a{
-  color: #fff;
+  color: #fef3bd;
   font-size: 15px;
   font-weight: 500;
 }
@@ -152,14 +152,14 @@ nav .navbar .links li:hover .js-sub-menu{
   top: 65px;
   opacity: 1;
   pointer-events: auto;
-  background: #2939e6;
+  background: #3749db;
 }
 .search-box .input-box::before{
   content: '';
   position: absolute;
   height: 20px;
   width: 20px;
-  background: #2939e6;
+  background: #3749db;
   right: 10px;
   top: -6px;
   transform: rotate(45deg);
@@ -184,27 +184,36 @@ nav .navbar .links li:hover .js-sub-menu{
   display: none;
 }
 
-.textContainer{
+section {
+  max-width: 900px; 
+  padding: 40px 20px; 
+  font-family: 'Segoe UI', sans-serif; 
+  color: #333; 
+  line-height: 1.8;
   margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 1250px;
   width: 100%;
-  padding: 0px 50px;
+  padding-top: 0px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-bottom: 70px; /* adicionado para dar espaço ao footer fixo */
 }
-.textContainer h1{
+section h1{
   font-size: 40px;
-  color: #113b87;
+  color: #3749db;
   font-weight: 600;
   margin-bottom: 20px;
 }
-.textContainer p{
+section p{
   font-size: 20px;
-  color: #113b87;
+  color: #3749db;
   font-weight: 400;
   line-height: 30px;
 }
 
-.textContainer form input{
+section form input{
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 20px;
@@ -237,7 +246,7 @@ footer {
   left: 0;
   width: 100%;
   height: 50px;
-  background: #113b87;
+  background: #3749db;
   box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
   font: 20px;
   color: #fff;
@@ -246,6 +255,14 @@ footer {
   z-index: 98;
 }
 
+
+.imgTrotinete {
+  text-align: center;
+  margin-top: 50px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
 
 
 /* Resonsive media query */
@@ -280,7 +297,7 @@ footer {
     display: block;
     max-width: 270px;
     width: 100%;
-    background:  #2939e6;
+    background:  #3749db;
     line-height: 40px;
     padding: 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);

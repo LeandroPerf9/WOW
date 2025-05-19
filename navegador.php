@@ -8,14 +8,13 @@
         <ul class="links">
           <li><a href="index.php">HOME</a></li>
           <li>
-            <a href="#">MARCAS</a>
+            <a href="marcas.php">MARCAS</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
-              <li><a href="#">Urbanglide</a></li>
-              <li><a href="#">iScooter</a></li>
-              <li><a href="#">Segway</a></li>
-              <li class="more">
-                <span><a href="#">Xiaomi</a>
+              <li><a href="processaForms.php?m=1">Urbanglide</a></li>
+              <li><a href="processaForms.php?m=2">iScooter</a></li>
+              <li><a href="processaForms.php?m=3">Segway</a></li>
+              <li><a href="processaForms.php?m=4">Xiaomi</a>
                 
             </ul>
           </li>
@@ -24,7 +23,7 @@
             <i class='bx bxs-chevron-down js-arrow arrow '></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="autonomia.php">AUTONOMIA </a></li>
-              <li><a href="#">PESO E PORTABILIDADE</a></li>
+              <li><a href="mobilidade.php">MOBILIDADE</a></li>
             </ul>
           </li>
           <li><a href="fundamento.php">FUNDAMENTO</a></li>
@@ -41,7 +40,6 @@
       <div class="login-box">
         <a href="login.php" style="color: aliceblue;"> &nbsp Login &nbsp </a><br>
         <a href="criarlogin.php" style="color: aliceblue;"> &nbsp Sign Up &nbsp </a>
-        <i class='bx bx-user-circle'></i>
       </div>
     </div>
   </nav>

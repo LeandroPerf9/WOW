@@ -1,5 +1,6 @@
 <?php 
   include('ligaDados.php'); 
+  $db = new ligaDados();
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +18,40 @@
 <br>
 <?php
   include('navegador.php');
-
 ?>
+
+
 <section>
 
+  <table>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Imagem</th>
+    </tr>
+    
+  </table>
 
 </section>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="script.js"></script>
 </body>
   <footer>

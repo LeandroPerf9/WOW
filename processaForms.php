@@ -25,3 +25,7 @@ if(isset($_POST['login'])){
 	}
   }
 }
+
+if(isset($_GET['m'])){
+	$db->listar_trotinetes($_GET['m']);
+}
