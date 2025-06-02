@@ -1,4 +1,6 @@
 <?php 
+session_start(); // Inicia sessão no topo do ficheiro
+
 class ligaDados {
     private $servidor = 'localhost';
     private $dbnome = 'dbwow';
@@ -32,8 +34,8 @@ class ligaDados {
         $emailExistente = $stmtVerificaEmail->fetchColumn();
 
         if ($emailExistente > 0) {
-            $_SESSION['erro'] = "Este utilizador já está registado!";
-            return false;
+            echo "Este utilizador já está registado!";
+            return;
         }
 
         // Criptografar a password
@@ -45,14 +47,24 @@ class ligaDados {
         $stmt->bindParam(':nome', $utilizador);
         $stmt->bindParam(':pass', $hash);
         $stmt->bindParam(':tipo', $tipo);
-        
-        if ($stmt->execute()) {
-            // Autologin após registo
-            $this->login($utilizador, $password1);
-            return true;
+        $stmt->execute();
+
+        // Autologin após registo
+        $sqlLogin = "SELECT * FROM utilizadores WHERE nome = :nome";
+        $stmtLogin = $this->liga->prepare($sqlLogin);
+        $stmtLogin->bindParam(':nome', $utilizador);
+        $stmtLogin->execute();
+        $utilizadorInfo = $stmtLogin->fetch(PDO::FETCH_ASSOC);
+
+        if ($utilizadorInfo && password_verify($password1, $utilizadorInfo['pass'])) {
+            $_SESSION['login'] = true;
+            $_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso</p>"; 
+            $_SESSION['nome'] = $utilizadorInfo['nome'];
+            $_SESSION['tipo'] = $utilizadorInfo['tipoUtilizador'] == 1 ? 1 : 2;
+            header("Location: index.php");
+            exit;
         } else {
-            $_SESSION['erro'] = "Erro ao registar utilizador!";
-            return false;
+            echo "Erro ao fazer login!";
         }
     }
 
@@ -64,50 +76,31 @@ class ligaDados {
         $inf = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$inf) {
-            $_SESSION['erro'] = "Utilizador não encontrado!";
-            return false;
+            echo "Utilizador não encontrado!";
+            return;
         }
 
         if (password_verify($password1, $inf['pass'])) {
             $_SESSION['login'] = true;
-            $_SESSION['sucesso'] = "Login efetuado com sucesso!"; 
+            $_SESSION['loginMsg'] = "<p align='center' style='color: blue;'>Login com sucesso</p>"; 
             $_SESSION['nome'] = $inf['nome'];
-            $_SESSION['tipo'] = $inf['tipoUtilizador'] == 1 ? 1 : 2; // Ajustar conforme estrutura da BD
-            
-            // Limpar mensagens de erro
-            unset($_SESSION['erro']);
-            
+            $_SESSION['tipo'] = $inf['id_tipo'] == 1 ? 1 : 2;
             header("Location: index.php");
             exit;
         } else {
-            $_SESSION['erro'] = "Palavra-passe incorreta!";
-            return false;
+            echo "Palavra-passe incorreta!";
         }
     }
 
     function logout() {
-        // Limpar todas as variáveis de sessão relacionadas com login
+        session_start();
         unset($_SESSION['login']);
-        unset($_SESSION['sucesso']);
-        unset($_SESSION['erro']);
+        unset($_SESSION['loginMsg']);
         unset($_SESSION['nome']);
         unset($_SESSION['tipo']);
-        
-        $_SESSION['sucesso'] = "Logout efetuado com sucesso!";
+        session_unset();
+        session_destroy();
         header("Location: index.php");
-        exit;
-    }
-
-    function isLoggedIn() {
-        return isset($_SESSION['login']) && $_SESSION['login'] === true;
-    }
-
-    function getUserName() {
-        return isset($_SESSION['nome']) ? $_SESSION['nome'] : '';
-    }
-
-    function getUserType() {
-        return isset($_SESSION['tipo']) ? $_SESSION['tipo'] : 0;
     }
 
     // Listar trotinetes
@@ -123,11 +116,11 @@ class ligaDados {
         foreach ($inf as $dados) {
             echo '
             <tr>
-                <td>' . htmlspecialchars($dados['marca']) . '</td>
-                <td>' . htmlspecialchars($dados['modelo']) . '</td>
-                <td>' . htmlspecialchars($dados['descricao']) . '</td>
-                <td>' . htmlspecialchars($dados['preco']) . '</td>
-                <td>' . htmlspecialchars($dados['imagem']) . '</td>
+                <td>' . $dados['marca'] . '</td>
+                <td>' . $dados['modelo'] . '</td>
+                <td>' . $dados['descricao'] . '</td>
+                <td>' . $dados['preco'] . '</td>
+                <td>' . $dados['imagem'] . '</td>
             </tr>';
         }
     }

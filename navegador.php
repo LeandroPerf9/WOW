@@ -1,12 +1,4 @@
-<?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Incluir a classe ligaDados para usar as funções auxiliares
-require_once 'ligaDados.php';
-$db = new ligaDados();
-?>
+<?php session_start(); ?>
 <nav>
   <div class="navbar">
     <i class='bx bx-menu'></i>
@@ -46,8 +38,7 @@ $db = new ligaDados();
     </div>
     <!-- login/logout button -->
     <div class="login-box">
-      <?php if ($db->isLoggedIn()): ?>
-        <span style="color: aliceblue;">Olá, <?php echo htmlspecialchars($db->getUserName()); ?>!</span><br>
+      <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
         <a href="logout.php" style="color: aliceblue;"> &nbsp Logout &nbsp </a>
       <?php else: ?>
         <a href="login.php" style="color: aliceblue;"> &nbsp Login &nbsp </a><br>
@@ -56,18 +47,3 @@ $db = new ligaDados();
     </div>
   </div>
 </nav>
-
-<!-- Mostrar mensagens de sucesso/erro -->
-<?php if (isset($_SESSION['sucesso'])): ?>
-    <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 10px; margin: 10px; border-radius: 5px;">
-        <?php echo htmlspecialchars($_SESSION['sucesso']); ?>
-        <?php unset($_SESSION['sucesso']); ?>
-    </div>
-<?php endif; ?>
-
-<?php if (isset($_SESSION['erro'])): ?>
-    <div class="alert alert-error" style="background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px; border-radius: 5px;">
-        <?php echo htmlspecialchars($_SESSION['erro']); ?>
-        <?php unset($_SESSION['erro']); ?>
-    </div>
-<?php endif; ?>
