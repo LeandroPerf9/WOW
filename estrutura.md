@@ -17,3 +17,4 @@ WOW_Structure_Project:
 | script.js
 | style.css
 | urbanglidecatalog.php
+| logout.php
