@@ -66,7 +66,7 @@ nav .navbar .links li a{
 .links li:hover .htmlcss-arrow,
 .links li:hover .js-arrow{
   transform: rotate(180deg);
-  }
+}
 
 nav .navbar .links li .arrow{
   /* background: red; */
@@ -239,23 +239,6 @@ section form input{
   list-style: none;
 }
 
-footer {
-  position: fixed;
-  margin-top: 70px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: #3749db;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-  font: 20px;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
-  z-index: 98;
-}
-
-
 .imgTrotinete {
   text-align: center;
   margin-top: 50px;
@@ -263,6 +246,75 @@ footer {
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+
+.login-box {
+  text-align: right;
+  padding: 10px 20px;
+}
+
+.login-box a {
+  text-decoration: none;        /* Remove sublinhado */
+  color: white;                 /* Cor do texto */
+  background-color: #007BFF;    /* Azul suave */
+  padding: 1px;
+  margin: 5px;
+  border-radius: 6px;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.login-box a:hover {
+  background-color: #0056b3;    /* Tom mais escuro ao passar o mouse */
+}
+
+
+
+
+footer {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+  transition: all 0.4s ease;
+}
+
+/* Texto do footer */
+.textFooter {
+  margin-top: 50px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  position: relative;
+  background-color: white;
+  padding: 15px;
+}
+
+/* Container da imagem */
+.imgFooter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-top: 20px;
+}
+
+/* Exibe imagem ao passar o mouse no footer */
+footer:hover .imgFooter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Imagem dentro do footer */
+.imgFooter img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
 
 
 /* Resonsive media query */

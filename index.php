@@ -69,7 +69,7 @@
   </ul>
 
   <p style="font-size: 1.1em; text-align: center; margin-top: 40px; color: #2c3e50; font-weight: bold;">
-    As trotinetes elétricas são mais do que um meio de transporte — são um estilo de vida moderno e responsável.
+    As trotinetes elétricas são mais do que um meio de transporte - são um estilo de vida moderno e responsável.
   </p>
 
   <!-- Imagem inserida -->
@@ -79,20 +79,21 @@
   </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
 </body>
-  <footer>
+
+
+
+
+
+
+
+   <footer>
+   <div class="textFooter">
     <p>© 2025 World On Wheels. Todos os direitos reservados</p>
-    </div>
+  </div>
+  <div class="imgFooter">
+    <img src="./IMAGENS/rodapelogos.png"
+    alt="Logos">
+  </div>
   </footer>
 </html>

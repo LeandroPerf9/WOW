@@ -28,8 +28,7 @@
   </h1>
 
   <p style="margin-bottom: 20px; font-size: 1.2em;">
-    A escolha deste tema não foi ao acaso. As trotinetes elétricas representam uma nova forma de mobilidade
-    que está a mudar o mundo. São práticas, económicas e amigas do ambiente.
+    O site foi desenvolvido por Leandro Pereira Fernandes como a prova de Avaliação Final do Curso de Aprendizagem de Programador de Informática, com o objetivo de demonstrar conhecimentos e competências adquiridas no percurso destes 3 anos. 
   </p>
 
   <p style="margin-bottom: 20px;">

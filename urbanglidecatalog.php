@@ -4,13 +4,13 @@ include('ligaDados.php');
 // Instancia a classe de ligação
 $db = new ligaDados();
 
-// Obtém o ID do modelo da query string
-$modelo_id = isset($_GET['m']) ? intval($_GET['m']) : 0;
+// Obtém o ID da marca da query string
+$marca_id = isset($_GET['m']) ? intval($_GET['m']) : 0;
 
-// Prepara a query para buscar as trotinetes do modelo especificado
-$sql = "SELECT * FROM trotinetes WHERE id_modelo = :id_modelo";
+// Prepara a query para buscar as trotinetes da marca especificada
+$sql = "SELECT * FROM trotinetes WHERE id_marca = :id_marca";
 $stmt = $db->liga->prepare($sql);
-$stmt->bindParam(':id_modelo', $modelo_id, PDO::PARAM_INT);
+$stmt->bindParam(':id_marca', $marca_id, PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -55,9 +55,15 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 </section>
 
-<footer>
+   <footer>
+   <div class="textFooter">
     <p>© 2025 World On Wheels. Todos os direitos reservados</p>
-</footer>
+  </div>
+  <div class="imgFooter">
+    <img src="./IMAGENS/rodapelogos.png"
+    alt="Logos">
+  </div>
+  </footer>
 
 </body>
 </html>
